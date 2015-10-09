@@ -4,18 +4,23 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p><%= e %></p>
-  <% end %>
-<% end %>
-<% if current_user %>
-<!-- <a href='/users'>All Users</a>
-<a href='users/professional_profile'>My Profile</a> -->
-<a href='/sessions' data-method='delete'>Logout</a>
-<% end %>
-<%= yield %>
+	<div class='container'>
+		<% if flash[:errors] %>
+		  <% flash[:errors].each do |e| %>
+		    <p><%= e %></p>
+		  <% end %>
+		<% end %>
+		<% if current_user %>
+		<!-- <a href='/users'>All Users</a>
+		<a href='users/professional_profile'>My Profile</a> -->
+		<a href='/sessions' data-method='delete'>Logout</a>
+		<% end %>
+		<%= yield %>
+	</div>
 </body>
 </html>

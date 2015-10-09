@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   get 'users' => 'users#index'
   get 'users/main' => 'users#main'
-  # post 'users' => 'users#create'
-  # get 'users/professional_profile' => 'users#professional_profile'
-  # get 'users/:id' => 'users#show'
+  post 'users' => 'users#create'
+  get 'users/professional_profile' => 'users#professional_profile'
+  get 'users/:id' => 'users#show'
 
   post 'sessions' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'
 
-  # post 'friendships' => 'friendships#create'
-  # patch 'friendships' => 'friendships#update'
-  # delete 'friendships' => 'friendships#destroy'
+  post 'friendships' => 'friendships#create'
+  patch 'friendships' => 'friendships#update'
+  delete 'friendships' => 'friendships#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
