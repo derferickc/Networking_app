@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<title>Professional Profile</title>
+</head>
+<body>
+	<a href='/users'>All Users</a>
+	<h3>Hi <%= @myprofile.name %></h3>
+
+	Here is your profile description:
+	<p><textarea><%= @myprofile.description %></textarea></p>
+
+	<h3>Your professional Network:</h3>
+	<table>
+	  <tr>
+	    <th>Name</td>
+	  </tr>
+<% @myfriends.each do |myfriend| %>
+	  <tr>
+	  	<td> <a href='/users/<%= myfriend.friend.id %>'><%= myfriend.friend.name %> </a></td>
+	  </tr>
+  <% end %>
+	</table>
+
+	<h3>Invitations: </h3>
+	<p>The following people asked you to be their network</p>
+	<table>
+	  <tr>
+	    <th>Name</td>
+	    <th>Action</th> 
+	  </tr>
+<% @friends.each do |friend| %>
+	  <tr>
+	  	<td> <a href='/users/<%= friend.friend.id %>'><%= friend.friend.name %></a></td>
+	    <td><form action = '/friendships' method = 'post'>
+				<input type = 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+				<input type="hidden" name="_method" value="patch">
+				<input type = 'hidden' name ='user_id' value="<%= session[:user_id] %>">
+				<input type = 'hidden' name ='friend_id' value="<%= friend.friend.id %>">
+				<input type = 'hidden' name ='column_id' value="<%= friend.id %>">
+				<input type = 'hidden' name ='status' value='b'>
+				<input type = 'submit' value = 'Accept Invite'>
+			</form>
+			<form action = '/friendships' method = 'post'>
+				<input type = 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+				<input type="hidden" name="_method" value="delete">
+				<input type = 'hidden' name ='user_id' value="<%= session[:user_id] %>">
+				<input type = 'hidden' name ='friend_id' value="<%= friend.friend.id %>">
+				<input type = 'hidden' name ='column_id' value="<%= friend.id %>">
+				<input type = 'hidden' name ='status' value='b'>
+				<input type = 'submit' value = 'Ignore'>
+			</form>
+	  </tr>
+<% end %>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Users</title>
+</head>
+<body>
+	<a href='users/professional_profile'>My Profile</a>
+	<p>Users you may want to connect with:</p>
+	<table>
+	  <tr>
+	    <th>Name</td>
+	    <th>Action</th> 
+	  </tr>
+<% @users.each do |user| %>
+	  <tr>
+	    <td><a href='users/<%= user.id %>'><%= user.name %></a></td>
+	    <td>
+			<form action = 'friendships' method = 'post'>
+				<input type = 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+				<input type = 'hidden' name ='user_id' value="<%= session[:user_id] %>">
+				<input type = 'hidden' name ='friend_id' value="<%= user.id %>">
+				<input type = 'hidden' name ='status' value='b'>
+				<input type = 'submit' value = 'Connect'>
+			</form>
+	    </td> 
+	  </tr>
+	  <% end %>
+	</table>
+
+	
+</body>
+</html>

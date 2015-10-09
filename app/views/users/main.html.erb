@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title>Login/Registraion</title>
+</head>
+<h1>Welcome!</h1>
+<!-- <div class='errors'>
+	<p> <%= flash[:errors] %> </p>
+</div> -->
+<h2>Register</h2>
+<form action = '/users' method  = 'post'>
+	<input type = 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+	<p>Name: <input type = 'text' name = 'name'></p>	
+	<p>Email: <input type = 'text' name = 'email'></p>
+	<p>Password: <input type = 'password' name = 'password'></p>
+	*Password should be at least 8 characters
+	<p>Confirm PW: <input type = 'password' name = 'password_confirmation'></p>
+	<p>Description: <textarea name="description"></textarea></p>
+	<input type = 'submit' value = 'Register'>
+</form>
+
+<div class='logout'>
+	<p> <%= flash[:logout] %> </p>
+</div>
+<h2>Login</h2>
+<div class='error'>
+	<p> <%= flash[:error] %> </p>
+</div>
+<form action = '/sessions' method = 'post'>
+	<input type = 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+	<p>Email: <input type = 'text' name ='email'></p>
+	<p>Password: <input type = 'password' name ='password'></p>
+	<input type = 'submit' value = 'Login'>
+</form>
+</html>
